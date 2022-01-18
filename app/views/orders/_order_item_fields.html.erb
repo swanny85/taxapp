@@ -1,0 +1,45 @@
+<%= content_tag :div, class: "nested-fields mb-3 p-4 space-y-3 border-2 border-gray-300 rounded", data: { new_record: form.object.new_record? } do %>
+  <div class="grid grid-cols-5 space-x-1">
+    <div class="form-group col-span-1">
+      <%= form.label :quantity, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.select(:quantity, ((0..50).map {|i| [i,i] } << [nil,nil]), { selected: 1 }, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" })%>
+    </div>
+    <div class="form-group col-span-2 mt-1">
+      <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md' %>
+    </div>
+    <div class="form-group col-span-2">
+      <div>
+        <%= form.label :price, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span class="text-gray-500 sm:text-sm">
+              $
+            </span>
+          </div>
+          <%= form.number_field :price, in: 0.01..100.0, step: 0.01, placeholder: 0.00, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" %>
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <span class="text-gray-500 sm:text-sm" id="price-currency">
+              USD
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.check_box :sales_tax_exempt, class: "h-4 w-4 text-indigo-500 focus:ring-indigo-500 border-gray-300 rounded" %>
+    <%= form.label :sales_tax_exempt %>
+  </div>
+  <div class="form-group">
+    <%= form.check_box :imported, class: "h-4 w-4 text-indigo-500 focus:ring-indigo-500 border-gray-300 rounded" %>
+    <%= form.label :imported %>
+  </div>
+    <button type="button" data-action="click->nested-form#remove_association" class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      Remove Order Item
+      <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  <%= form.hidden_field :_destroy %>
+<% end %>

@@ -1,0 +1,52 @@
+<%= form_with(model: order, class: "space-y-8 divide-y") do |form| %>
+  <div class="space-y-8 divide-y divide-gray-200">
+        <div>
+      <div>
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Order
+        </h3>
+      </div>
+
+    <% if order.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+          <% order.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h4>Order Items</h4>
+    <div data-controller="nested-form">
+      <template data-nested-form-target="template">
+        <%= form.fields_for :order_items, OrderItem.new, child_index: 'NEW_RECORD' do |order_item| %>
+          <%= render "order_item_fields", form: order_item %>
+        <% end %>
+      </template>
+
+      <%= form.fields_for :order_items do |order_item| %>
+        <%= render "order_item_fields", form: order_item %>
+      <% end %>
+
+      <div class="mt-7 mb-3 flex" data-nested-form-target="links">
+        <button type="button" data-action="click->nested-form#add_association" class="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <!-- Heroicon name: solid/plus-sm -->
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <p class="ml-3 mt-1 text-gray-600">
+        Add Order Item
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <%= form.submit class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+
+    </div>
+  </div>
+<% end %>

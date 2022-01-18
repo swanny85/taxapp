@@ -1,0 +1,9 @@
+<li class="flex py-6 space-x-6">
+  <img src="https://tailwindui.com/img/ecommerce-images/confirmation-page-06-product-01.jpg" alt="Model wearing men&#039;s charcoal basic tee in large." class="flex-none w-24 h-24 bg-gray-100 rounded-md object-center object-cover">
+  <div class="flex-auto space-y-1">
+    <h3 class="text-gray-900">
+      <a href="#"><%= order_item.quantity %> x <%= order_item.name %></a>
+    </h3>
+  </div>
+  <p class="flex-none font-medium text-gray-900"><%= number_to_currency order_item.price %></p>
+</li>

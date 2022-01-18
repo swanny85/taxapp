@@ -1,0 +1,22 @@
+<dl class="text-sm font-medium text-gray-500 space-y-6 border-t border-gray-200 pt-6">
+  <div class="flex justify-between">
+    <dt>Subtotal</dt>
+    <dd class="text-gray-900">
+      <%= number_to_currency(order.subtotal) %>
+    </dd>
+  </div>
+
+  <div class="flex justify-between">
+    <dt>Taxes</dt>
+    <dd class="text-gray-900">
+      <%= number_to_currency(order.taxes) %>
+    </dd>
+  </div>
+
+  <div class="flex items-center justify-between border-t border-gray-200 text-gray-900 pt-6">
+    <dt class="text-base">Total</dt>
+    <dd class="text-base">
+      <%= number_to_currency(order.total) %>
+    </dd>
+  </div>
+</dl>
