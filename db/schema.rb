@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_172720) do
     t.string "name"
     t.boolean "imported", default: false
     t.boolean "sales_tax_exempt", default: false
-    t.bigint "order_id", null: false
+    t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"

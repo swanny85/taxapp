@@ -6,7 +6,7 @@ class CreateOrderItems < ActiveRecord::Migration[7.0]
       t.string :name
       t.boolean :imported, default: false
       t.boolean :sales_tax_exempt, default: false
-      t.belongs_to :order, null: false, foreign_key: true
+      t.belongs_to :order, foreign_key: true
 
       t.timestamps
     end
