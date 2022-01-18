@@ -1,3 +1,4 @@
+require 'csv'
 class Order < ApplicationRecord
   has_many :order_items
   accepts_nested_attributes_for :order_items, reject_if: :all_blank, allow_destroy: true
@@ -20,5 +21,17 @@ class Order < ApplicationRecord
 
   def total
     subtotal + taxes
+  end
+
+  def csv_output
+    CSV.generate do |csv|
+      csv << ["Quantity", "Name", "Price"]
+      order_items.each do |oi|
+        csv << [oi.quantity, oi.name, oi.price]
+      end
+      csv << ['']
+      csv << ['Sales Taxes:', sales_tax]
+      csv << ['Total:', total]
+    end
   end
 end

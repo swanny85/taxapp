@@ -25,8 +25,9 @@
 
         <%= render @order %>
 
-        <div class="mt-16 border-t border-gray-200 py-6 text-right">
+        <div class="mt-16 border-t border-gray-200 py-6 text-right space-x-3">
           <%= link_to "Edit Order", edit_order_path(@order), class: "text-sm font-medium text-indigo-600 hover:text-indigo-500" %>
+          <%= link_to "Export CSV", orders_csv_path(@order, format: :csv), class: "text-sm font-medium text-indigo-600 hover:text-indigo-500" %>
         </div>
       </div>
     </div>
