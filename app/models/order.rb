@@ -27,11 +27,15 @@ class Order < ApplicationRecord
     CSV.generate do |csv|
       csv << ["Quantity", "Name", "Price"]
       order_items.each do |oi|
-        csv << [oi.quantity, oi.name, oi.price]
+        csv << [oi.quantity, oi.name, helpers.number_with_precision(oi.price, precision: 2)]
       end
       csv << [""]
-      csv << ["Sales Taxes:", sales_tax]
-      csv << ["Total:", total]
+      csv << ["Sales Taxes:", helpers.number_with_precision(sales_tax, precision: 2)]
+      csv << ["Total:", helpers.number_with_precision(total, precision: 2)]
     end
+  end
+
+  def helpers
+    ActionController::Base.helpers
   end
 end
