@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'orders#index'
+  root "orders#index"
   resources :orders
   namespace :orders do
     resources :csv, only: [:show]

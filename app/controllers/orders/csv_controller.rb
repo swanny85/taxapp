@@ -9,7 +9,7 @@ class Orders::CsvController < ApplicationController
 
   private
 
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  def set_order
+    @order = Order.find(params[:id])
+  end
 end

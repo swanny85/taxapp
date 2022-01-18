@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "orders/edit", type: :view do
   before(:each) do
@@ -13,7 +13,6 @@ RSpec.describe "orders/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", order_path(@order), "post" do
-
       assert_select "input[name=?]", "order[subtotal]"
 
       assert_select "input[name=?]", "order[tax]"
